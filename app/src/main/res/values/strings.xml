@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Task</string>
+    <string name="Name">Nombre</string>
+    <string name="password">Contresena</string>
+    <string name="busseness_details">Detalles del negocio</string>
+    <string name="tipo">tipo</string>
+    <string name="Dueña">Dueña</string>
+    <string name="Dirección">Dirección de Negocios</string>
+    <string name="cuidad">cuidad</string>
+    <string name="codigo">codigo Pin</string>
+    <string name="Direccion_Linea_1">Direccion Linea 1</string>
+    <string name="Direccion_Linea_2">Direccion Linea 2</string>
+    <string name="Tablero_de_mandos">Tablero de mandos</string>
+    <string name="Registros_diarios">Registros diarios</string>
+    <string name="Colecciones">Colecciones</string>
+    <string name="Reportes_diarios">Reportes diarios</string>
+    <string name="toque_el">toque el icono del micrófono para grabar</string>
+    <string name="la_entrada">la entrada de voz se mostrará aquí</string>
+    <string name="Forgotpass">olvidé mi contraseña</string>
+
+</resources>
