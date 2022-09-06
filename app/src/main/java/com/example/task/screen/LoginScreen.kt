@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -31,8 +32,10 @@ fun LoginScreen() {
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
-            .padding(start = 10.dp, end = 10.dp),
-    ) {
+            .padding(start = 10.dp, end = 10.dp, top = 20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+
+        ) {
         Spacer(modifier = Modifier.height(40.dp))
         Image(
             painter = painterResource(id = R.drawable.logo),
@@ -72,15 +75,17 @@ fun LoginScreen() {
         )
 
         InputText(
-            text = "", label = "", onTextChange = {}, modifier = Modifier
+            text = "", label = "", onTextChange = {},
+            modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 20.dp, end = 20.dp)
-        )
+                .padding(start = 20.dp, end = 20.dp),
+
+            )
 
         Text(
             text = stringResource(id = R.string.Forgotpass),
             modifier = Modifier
-                .padding(top = 10.dp, end = 20.dp)
+                .padding(top = 20.dp, end = 30.dp)
                 .fillMaxWidth()
                 .clickable { },
             textAlign = TextAlign.End,
@@ -93,7 +98,8 @@ fun LoginScreen() {
         Button(
             text = "Continuar", onClick = { },
             modifier = Modifier
-                .padding(top = 30.dp, start = 50.dp, end = 50.dp).fillMaxWidth()
+                .padding(top = 30.dp, start = 20.dp, end = 20.dp)
+                .fillMaxWidth()
                 .align(CenterHorizontally)
         )
 

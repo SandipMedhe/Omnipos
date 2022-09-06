@@ -52,7 +52,7 @@ fun DailyLogs() {
         Text(
             text = stringResource(id = R.string.toque_el),
             fontSize = 24.sp,
-            color = AppColor.toolbar,
+            color = AppColor.textColor,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(top = 15.dp)
@@ -66,12 +66,15 @@ fun DailyLogs() {
             .height(250.dp)
             .fillMaxWidth()
             .padding(30.dp),
-        placeholder = {
-            Text(text = stringResource(id = R.string.la_entrada), fontSize = 24.sp, textAlign = TextAlign.Center,
-                fontStyle = FontStyle.Italic,
-                modifier = Modifier.padding(30.dp)
-            )
-        })
+            placeholder = {
+                Text(
+                    text = stringResource(id = R.string.la_entrada),
+                    fontSize = 24.sp,
+                    textAlign = TextAlign.Center,
+                    fontStyle = FontStyle.Italic,
+                    modifier = Modifier.padding(30.dp)
+                )
+            })
 
         Button(
             text = "Continuar", onClick = { },

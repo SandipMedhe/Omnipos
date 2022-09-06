@@ -16,6 +16,13 @@
     <string name="Reportes_diarios">Reportes diarios</string>
     <string name="toque_el">toque el icono del micrófono para grabar</string>
     <string name="la_entrada">la entrada de voz se mostrará aquí</string>
-    <string name="Forgotpass">olvidé mi contraseña</string>
+    <string name="Forgotpass">olvidé mi contraseña?</string>
+    <string name="EnterName">introduzca su nombre</string>
+    <string name="Daily">Diarios</string>
+    <string name="Purchased_items">Elementos comprados</string>
+    <string name="one_gallon_milk">1  gallon de leche</string>
+    <string name="Price">Price</string>
+    <string name="State">Estado</string>
+    <string name="payment_made">Pago hecho</string>
 
 </resources>

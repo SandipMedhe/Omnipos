@@ -1,16 +1,14 @@
 package com.example.task.screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +30,16 @@ fun BusinessDetailsScreen() {
             .padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(40.dp))
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "Andy Rubin",
+            modifier = Modifier
+                .width(130.dp)
+                .height(130.dp)
+                .align(Alignment.CenterHorizontally)
+                .padding(bottom = 30.dp)
+        )
 
         Text(
             text = stringResource(id = R.string.busseness_details),
@@ -39,55 +47,70 @@ fun BusinessDetailsScreen() {
             modifier = Modifier.padding(top = 10.dp)
         )
 
+        Spacer(modifier = Modifier.height(40.dp))
         Text(
-            text = stringResource(id = R.string.Name), modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 30.dp),
-            fontSize = 30.sp, color = AppColor.textColor
-        )
-
-        InputText(
-            text = "", label = "", onTextChange = {}, modifier = Modifier
-                .fillMaxWidth()
-                .padding(5.dp).clip(RoundedCornerShape(50))
-        )
-
-        Text(
-            text = stringResource(id = R.string.tipo), modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp)
-                .clip(RoundedCornerShape(10.dp)),
-            fontSize = 30.sp, color = AppColor.textColor
-        )
-
-        InputText(
-            text = "", label = "", onTextChange = {}, modifier = Modifier
-                .fillMaxWidth()
-                .padding(5.dp)
-        )
-
-        Text(
-            text = stringResource(id = R.string.Dueña), modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp)
-                .clip(RoundedCornerShape(10.dp)),
-            fontSize = 30.sp, color = AppColor.textColor
-        )
-
-        InputText(
-            text = "", label = "", onTextChange = {}, modifier = Modifier
-                .fillMaxWidth()
-                .padding(5.dp)
-        )
-
-        Button(
-            text = "Continuar", onClick = {  },
+            text = stringResource(id = R.string.Name),
             modifier = Modifier
-                .padding(top = 30.dp)
-                .align(Alignment.CenterHorizontally)
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp),
+            color = Color.Gray,
+            fontSize = 15.sp, fontWeight = FontWeight.Bold
         )
+        InputText(
+            text = "", label = "", onTextChange = {}, modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp)
+        )
+
+        Text(
+            text = stringResource(id = R.string.tipo),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp),
+            color = Color.Gray,
+            fontSize = 15.sp, fontWeight = FontWeight.Bold
+        )
+        InputText(
+            text = "", label = "", onTextChange = {}, modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp)
+        )
+
+        Text(
+            text = stringResource(id = R.string.Dueña),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp),
+            color = Color.Gray,
+            fontSize = 15.sp, fontWeight = FontWeight.Bold
+        )
+
+        InputText(
+            text = "", label = "", onTextChange = {}, modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp)
+        )
+
+      Row(modifier = Modifier
+          .fillMaxWidth()
+          .padding(top = 30.dp, start = 10.dp, end = 10.dp), horizontalArrangement = Arrangement.SpaceEvenly
+
+      ) {
+          Button(
+              text = "Previous", onClick = {  },
+              modifier = Modifier.weight(0.2f).padding(10.dp)
+
+
+          )
+         Spacer(modifier = Modifier.height(30.dp))
+          Button(
+              text = "Continuar", onClick = {  },
+              modifier = Modifier.weight(0.2f).padding(10.dp)
+          )
+      }
+       }
     }
-}
+
 
 
 @Preview(showBackground = true)

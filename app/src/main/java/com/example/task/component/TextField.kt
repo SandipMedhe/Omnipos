@@ -1,5 +1,6 @@
 package com.example.task.component
 
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.OutlinedTextField
@@ -12,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @ExperimentalComposeUiApi
@@ -33,6 +35,7 @@ fun InputText(
             backgroundColor = Color.Transparent
         ),
         maxLines = maxLine,
+        shape = RoundedCornerShape(50.dp),
 
         label = { Text(text = label,fontSize = 20.sp, fontStyle = FontStyle.Italic) },
         keyboardOptions = KeyboardOptions.Default.copy(
