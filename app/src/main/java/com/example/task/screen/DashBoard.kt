@@ -19,12 +19,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.task.R
+import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor
 
 @Composable
-fun DashBoard() {
+fun DashBoard(navController: NavHostController) {
 
     Column(
         modifier = Modifier
@@ -66,7 +69,7 @@ fun DashBoard() {
                     image = R.drawable.booklet,
                     text = stringResource(id = R.string.Registros_diarios),
                     onClick = {
-
+                        navController.navigate(NavigationScreen.DailyLogs.route)
                     })
 
                 DashBoardCard(
@@ -101,7 +104,7 @@ fun DashBoardCard(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .clickable { onClick }
+            .clickable { onClick() }
             .clip(RoundedCornerShape(10.dp)),
         //set background color of the card
         backgroundColor = AppColor.textColor
@@ -137,6 +140,7 @@ fun DashBoardCard(
 @Composable
 fun DefaultPreview4() {
     TaskTheme {
-        DashBoard()
+        val navController = rememberNavController()
+        DashBoard(navController)
     }
 }

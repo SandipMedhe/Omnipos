@@ -1,6 +1,7 @@
 package com.example.task.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -14,29 +15,33 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.task.R
+import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
 
 @Composable
-fun DailyLogsDetails() {
+fun DailyLogsDetails(navController: NavHostController) {
     Column(modifier = Modifier.fillMaxSize()) {
 
 
-            LogDetailsCard()
-            LogDetailsCard(R.drawable.pending)
-            LogDetailsCard()
-            LogDetailsCard()
+            LogDetailsCard(navController)
+            LogDetailsCard(navController,R.drawable.pending)
+            LogDetailsCard(navController)
+            LogDetailsCard(navController)
 
         }
     }
 
 
 @Composable
-fun LogDetailsCard(image: Int =  R.drawable.active){
+fun LogDetailsCard(navController: NavHostController,image: Int =  R.drawable.active){
     Card(  modifier = Modifier
         .fillMaxWidth()
         .height(100.dp)
-        .padding(start = 16.dp,top = 16.dp, end = 16.dp),
+        .padding(start = 16.dp, top = 16.dp, end = 16.dp)
+        .clickable { navController.navigate(NavigationScreen.DailyScreen.route) },
         elevation = 10.dp,
         shape = RoundedCornerShape(16.dp)) {
         Row(horizontalArrangement = Arrangement.SpaceAround ) {
@@ -84,6 +89,7 @@ fun LogDetailsCard(image: Int =  R.drawable.active){
 @Composable
 fun DefaultPreview6() {
     TaskTheme {
-        DailyLogsDetails()
+        val navController = rememberNavController()
+        DailyLogsDetails(navController)
     }
 }

@@ -1,32 +1,49 @@
 package com.example.task.screen
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.task.R
 import com.example.task.component.Button
 import com.example.task.component.InputText
+import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
 
 @OptIn(ExperimentalComposeUiApi::class)
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavHostController) {
+
+    val context = LocalContext.current
+
+    var name by remember { mutableStateOf("") }
+    var nameHasError by remember { mutableStateOf(false) }
+    var nameLabel by remember { mutableStateOf("Enter your name") }
+
+    var password by remember { mutableStateOf("") }
+    var passwordHasError by remember { mutableStateOf(false) }
+    var passwordLabel by remember { mutableStateOf("Enter your password") }
 
     Column(
         modifier = Modifier
@@ -57,7 +74,9 @@ fun LoginScreen() {
         )
 
         InputText(
-            text = "", label = "", onTextChange = {}, modifier = Modifier
+            text = name, label = nameLabel, onTextChange = {
+                name = it
+            }, isError = nameHasError, modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp)
         )
@@ -75,10 +94,15 @@ fun LoginScreen() {
         )
 
         InputText(
-            text = "", label = "", onTextChange = {},
+            text = password, label = passwordLabel,
+            onTextChange = {
+                password = it
+            },
+            isError = passwordHasError,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
+            visualTransformation = PasswordVisualTransformation()
 
             )
 
@@ -96,7 +120,23 @@ fun LoginScreen() {
 
 
         Button(
-            text = "Continuar", onClick = { },
+            text = "Continuar",
+            onClick = {
+                when {
+                    name.isEmpty() -> {
+                        nameHasError = true
+                        nameLabel = "Name cannot be empty"
+                    }
+                    password.isEmpty() -> {
+                        passwordHasError = true
+                        passwordLabel = "Invalid password"
+                    }
+                    else -> {
+                        Toast.makeText(context, "Successfully Logged In", Toast.LENGTH_SHORT).show()
+                        navController.navigate(NavigationScreen.BusinessDetailsScreen.route)
+                    }
+                }
+            },
             modifier = Modifier
                 .padding(top = 30.dp, start = 20.dp, end = 20.dp)
                 .fillMaxWidth()
@@ -112,6 +152,11 @@ fun LoginScreen() {
 @Composable
 fun DefaultPreview() {
     TaskTheme {
-        LoginScreen()
+        val navController = rememberNavController()
+        LoginScreen(navController)
     }
+}
+
+fun Context.toast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

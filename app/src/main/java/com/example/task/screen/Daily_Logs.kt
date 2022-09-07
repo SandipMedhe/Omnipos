@@ -17,14 +17,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.task.R
 import com.example.task.component.Button
+import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor
 
 
 @Composable
-fun DailyLogs() {
+fun DailyLogs(navController: NavHostController) {
 
     val voiceText = remember {
         mutableStateOf("")
@@ -77,7 +80,7 @@ fun DailyLogs() {
             })
 
         Button(
-            text = "Continuar", onClick = { },
+            text = "Continuar", onClick = {navController.navigate(NavigationScreen.DailyLogsDetails.route) },
             modifier = Modifier
                 .padding(top = 20.dp)
                 .align(CenterHorizontally)
@@ -90,6 +93,7 @@ fun DailyLogs() {
 @Composable
 fun DefaultPreview5() {
     TaskTheme {
-        DailyLogs()
+        val navController = rememberNavController()
+        DailyLogs(navController)
     }
 }
