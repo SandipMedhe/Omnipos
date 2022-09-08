@@ -1,11 +1,13 @@
 package com.example.task.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,22 +18,46 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.task.R
 import com.example.task.ui.theme.TaskTheme
+import com.example.task.util.AppColor
 
 
 @Composable
-fun Daily() {
+fun Daily(navController: NavHostController) {
 
-    DailyCard()
+    DailyCard(navController)
 
 }
 
-
 @Composable
-fun DailyCard() {
+fun DailyCard(navController: NavHostController) {
     Column(modifier = Modifier.fillMaxSize()) {
 
+        TopAppBar(
+            backgroundColor = AppColor.buttonColor,
+        ) {
+            Row(horizontalArrangement = Arrangement.Start) {
+                Icon(imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Arrow Back",
+                    tint = Color.White,
+                    modifier = Modifier.clickable {
+                        navController.popBackStack()
+                    })
+                Spacer(modifier = Modifier.width(100.dp))
+
+                Text(
+                    text = stringResource(id = R.string.Daily),
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
+
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -76,8 +102,6 @@ fun DailyCard() {
                             .align(Alignment.CenterHorizontally), fontSize = 14.sp
                     )
                 }
-
-
             }
 
         }
@@ -189,6 +213,7 @@ fun Details() {
 @Composable
 fun DefaultPreview7() {
     TaskTheme {
-        DailyCard()
+        val navController = rememberNavController()
+        DailyCard(navController)
     }
 }

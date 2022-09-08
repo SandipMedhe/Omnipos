@@ -1,14 +1,20 @@
 package com.example.task.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -33,14 +39,30 @@ fun DailyLogs(navController: NavHostController) {
         mutableStateOf("")
     }
 
+
+
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = CenterHorizontally) {
-        Text(
-            text = stringResource(id = R.string.Registros_diarios),
-            fontSize = 30.sp, fontWeight = FontWeight.Bold, color = AppColor.textColor,
-            modifier = Modifier
-                .padding(top = 10.dp)
-                .align(CenterHorizontally)
-        )
+
+        TopAppBar(
+            backgroundColor = AppColor.buttonColor,
+        ) {
+            Row(horizontalArrangement = Arrangement.Start) {
+                Icon(imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Arrow Back",
+                    tint = Color.White,
+                    modifier = Modifier.clickable {
+                        navController.popBackStack()
+                    })
+                Spacer(modifier = Modifier.width(100.dp))
+
+                Text(
+                    text = stringResource(id = R.string.Registros_diarios),
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
+
+        }
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -80,7 +102,8 @@ fun DailyLogs(navController: NavHostController) {
             })
 
         Button(
-            text = "Continuar", onClick = {navController.navigate(NavigationScreen.DailyLogsDetails.route) },
+            text = "Continuar",
+            onClick = { navController.navigate(NavigationScreen.DailyLogsDetails.route) },
             modifier = Modifier
                 .padding(top = 20.dp)
                 .align(CenterHorizontally)

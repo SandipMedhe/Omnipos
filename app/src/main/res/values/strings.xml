@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Task</string>
+    <string name="app_name">Omni Pos</string>
     <string name="Name">Nombre</string>
     <string name="password">Contresena</string>
     <string name="busseness_details">Detalles del negocio</string>

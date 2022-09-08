@@ -2,6 +2,7 @@ package com.example.task.navigation
 
 sealed class NavigationScreen(var route:String){
 
+    object SplashScreen: NavigationScreen("SplashScreen")
     object LoginScreen: NavigationScreen("loginScreen")
     object BusinessDetailsScreen: NavigationScreen("businessDetailsScreen")
     object BusinessAddressScreen: NavigationScreen("businessAddressScreen")

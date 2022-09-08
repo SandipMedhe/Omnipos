@@ -1,6 +1,5 @@
 package com.example.task.screen
 
-import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,8 +26,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.task.R
 import com.example.task.component.Button
 import com.example.task.component.InputText
+import com.example.task.datastore.StoreUser
 import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalComposeUiApi::class)
 
@@ -36,6 +37,8 @@ import com.example.task.ui.theme.TaskTheme
 fun LoginScreen(navController: NavHostController) {
 
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val dataStore = StoreUser(context)
 
     var name by remember { mutableStateOf("") }
     var nameHasError by remember { mutableStateOf(false) }
@@ -104,7 +107,7 @@ fun LoginScreen(navController: NavHostController) {
                 .padding(start = 20.dp, end = 20.dp),
             visualTransformation = PasswordVisualTransformation()
 
-            )
+        )
 
         Text(
             text = stringResource(id = R.string.Forgotpass),
@@ -132,6 +135,9 @@ fun LoginScreen(navController: NavHostController) {
                         passwordLabel = "Invalid password"
                     }
                     else -> {
+                        scope.launch {
+                            dataStore.saveUser(name)
+                        }
                         Toast.makeText(context, "Successfully Logged In", Toast.LENGTH_SHORT).show()
                         navController.navigate(NavigationScreen.BusinessDetailsScreen.route)
                     }
@@ -157,6 +163,3 @@ fun DefaultPreview() {
     }
 }
 
-fun Context.toast(message: String) {
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-}

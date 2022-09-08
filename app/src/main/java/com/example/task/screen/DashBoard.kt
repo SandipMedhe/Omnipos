@@ -6,7 +6,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
@@ -37,11 +42,27 @@ fun DashBoard(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
-        Text(
-            text = stringResource(id = R.string.Tablero_de_mandos),
-            fontSize = 30.sp, fontWeight = FontWeight.Bold, color = Color.White,
-            modifier = Modifier.padding(top = 10.dp)
-        )
+        TopAppBar(
+            backgroundColor = AppColor.buttonColor,
+        ) {
+            Row(horizontalArrangement = Arrangement.Start) {
+                Icon(imageVector = Icons.Default.Menu,
+                    contentDescription = "Arrow Back",
+                    tint = Color.White,
+                    modifier = Modifier.clickable {
+
+                    })
+                Spacer(modifier = Modifier.width(100.dp))
+
+                Text(
+                    text = stringResource(id = R.string.Tablero_de_mandos),
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
+
+        }
+
 
         Spacer(modifier = Modifier.height(150.dp))
 

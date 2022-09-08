@@ -1,6 +1,7 @@
 package com.example.task.screen
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -8,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,6 +53,16 @@ fun BusinessAddressScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
+        Spacer(modifier = Modifier.height(10.dp))
+        Image(
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = "Andy Rubin",
+            modifier = Modifier
+                .width(130.dp)
+                .height(130.dp)
+                .align(Alignment.CenterHorizontally)
+                .padding(bottom = 30.dp)
+        )
         Text(
             text = stringResource(id = R.string.Dirección),
             fontSize = 30.sp, fontWeight = FontWeight.Bold, color = AppColor.textColor,
@@ -63,7 +75,7 @@ fun BusinessAddressScreen(navController: NavHostController) {
             text = cuida,
             label = cuidadLabel,
             onTextChange = {
-                           cuida =it
+                cuida = it
             }, isError = cuidaHasError,
             modifier = Modifier
                 .fillMaxWidth()
@@ -72,26 +84,26 @@ fun BusinessAddressScreen(navController: NavHostController) {
 
         InputText(
             text = codigo,
-            label =codigoLabel ,
-            onTextChange = {}, isError = codigoHasError,
+            label = codigoLabel,
+            onTextChange = { codigo = it }, isError = codigoHasError,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
         )
 
         InputText(
-            text =  DiectionLineOne,
-            label =  DirectionLine_1_LABEL,
-            onTextChange = {}, isError =  Direccion_Linea_1HasError,
+            text = DiectionLineOne,
+            label = DirectionLine_1_LABEL,
+            onTextChange = { DiectionLineOne = it }, isError = Direccion_Linea_1HasError,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
         )
 
         InputText(
-            text =  Direccion_Linea_2,
-            label =  Direccion_Linea_2Label,
-            onTextChange = {}, isError = Direccion_Linea_2HasError,
+            text = Direccion_Linea_2,
+            label = Direccion_Linea_2Label,
+            onTextChange = { Direccion_Linea_2 = it }, isError = Direccion_Linea_2HasError,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
@@ -110,11 +122,11 @@ fun BusinessAddressScreen(navController: NavHostController) {
                     }
                     DiectionLineOne.isEmpty() -> {
                         Direccion_Linea_1HasError = true
-                        DirectionLine_1_LABEL = "Direccion Linea 1 cannot be empty"
+                        DirectionLine_1_LABEL = "Field 1 cannot be empty"
                     }
                     Direccion_Linea_2.isEmpty() -> {
                         Direccion_Linea_2HasError = true
-                        Direccion_Linea_2Label = "Direccion Linea 2 cannot be empty"
+                        Direccion_Linea_2Label = "Field cannot be empty"
                     }
                     else -> {
                         Toast.makeText(context, "Moving to the next Page", Toast.LENGTH_SHORT)
@@ -122,7 +134,7 @@ fun BusinessAddressScreen(navController: NavHostController) {
                         navController.navigate(NavigationScreen.DashBoard.route)
                     }
                 }
-                 },
+            },
             modifier = Modifier
                 .padding(top = 20.dp)
                 .align(Alignment.CenterHorizontally)
