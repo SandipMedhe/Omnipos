@@ -1,4 +1,4 @@
-package com.example.task.screen
+package com.example.task.presentation.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

@@ -5,12 +5,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.task.sc.SplashScreen
-import com.example.task.screen.*
+import com.example.task.presentation.screen.*
 
 @Composable
-fun Navigation(){
+fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = NavigationScreen.SplashScreen.route){
+    NavHost(navController = navController, startDestination = NavigationScreen.SplashScreen.route) {
         composable(NavigationScreen.SplashScreen.route) {
             SplashScreen(navController = navController)
         }
@@ -42,8 +42,6 @@ fun Navigation(){
         composable(NavigationScreen.DailyScreen.route) {
             Daily(navController = navController)
         }
-
-
 
 
     }

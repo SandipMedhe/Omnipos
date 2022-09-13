@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
-import com.example.task.datastore.StoreUser
+import com.example.task.data.datastore.StoreUser
 import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor

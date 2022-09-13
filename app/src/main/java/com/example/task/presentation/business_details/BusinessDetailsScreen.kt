@@ -1,4 +1,4 @@
-package com.example.task.screen
+package com.example.task.presentation.business_details
 
 import android.widget.Toast
 import androidx.compose.foundation.Image

@@ -1,4 +1,4 @@
-package com.example.task.screen
+package com.example.task.presentation.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -7,7 +7,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier

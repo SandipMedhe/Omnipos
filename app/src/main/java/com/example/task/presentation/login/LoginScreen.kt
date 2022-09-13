@@ -1,4 +1,4 @@
-package com.example.task.screen
+package com.example.task.presentation.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -21,30 +21,36 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
 import com.example.task.component.Button
 import com.example.task.component.InputText
-import com.example.task.datastore.StoreUser
+import com.example.task.data.datastore.StoreUser
 import com.example.task.navigation.NavigationScreen
+import com.example.task.presentation.login.AddEvent
+import com.example.task.presentation.login.AddViewModel
 import com.example.task.ui.theme.TaskTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalComposeUiApi::class)
 
 @Composable
-fun LoginScreen(navController: NavHostController) {
+fun LoginScreen(
+    navController: NavHostController,
+    viewModel: AddViewModel = hiltViewModel()
+) {
 
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val dataStore = StoreUser(context)
 
-    var name by remember { mutableStateOf("") }
+    var name = viewModel.userName.value
     var nameHasError by remember { mutableStateOf(false) }
     var nameLabel by remember { mutableStateOf("Enter your name") }
 
-    var password by remember { mutableStateOf("") }
+    var password = viewModel.passWord.value
     var passwordHasError by remember { mutableStateOf(false) }
     var passwordLabel by remember { mutableStateOf("Enter your password") }
 
@@ -77,8 +83,8 @@ fun LoginScreen(navController: NavHostController) {
         )
 
         InputText(
-            text = name, label = nameLabel, onTextChange = {
-                name = it
+            text = name.text, label = nameLabel, onTextChange = {
+                viewModel.onEvent(AddEvent.EnterName(it))
             }, isError = nameHasError, modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp)
@@ -97,9 +103,9 @@ fun LoginScreen(navController: NavHostController) {
         )
 
         InputText(
-            text = password, label = passwordLabel,
+            text = password.text, label = passwordLabel,
             onTextChange = {
-                password = it
+                viewModel.onEvent(AddEvent.EnteredPassword(it))
             },
             isError = passwordHasError,
             modifier = Modifier
@@ -126,17 +132,18 @@ fun LoginScreen(navController: NavHostController) {
             text = "Continuar",
             onClick = {
                 when {
-                    name.isEmpty() -> {
+                    name.text.isEmpty() -> {
                         nameHasError = true
                         nameLabel = "Name cannot be empty"
                     }
-                    password.isEmpty() -> {
+                    password.text.isEmpty() -> {
                         passwordHasError = true
                         passwordLabel = "Invalid password"
                     }
                     else -> {
                         scope.launch {
-                            dataStore.saveUser(name)
+                            dataStore.saveUser(name.text)
+                           viewModel.onEvent( AddEvent.InsertUser)
                         }
                         Toast.makeText(context, "Successfully Logged In", Toast.LENGTH_SHORT).show()
                         navController.navigate(NavigationScreen.BusinessDetailsScreen.route)
