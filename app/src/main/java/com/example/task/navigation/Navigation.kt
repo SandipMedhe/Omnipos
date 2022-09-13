@@ -4,6 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.task.presentation.businessAddress.BusinessAddressScreen
+import com.example.task.presentation.business_details.BusinessDetailsScreen
+import com.example.task.presentation.login.LoginScreen
 import com.example.task.sc.SplashScreen
 import com.example.task.presentation.screen.*
 
