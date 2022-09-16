@@ -51,11 +51,11 @@ fun SplashScreen(navController: NavHostController) {
         )
         // Customize the delay time
         delay(1000L)
-        if (savedEmail.value!!.isEmpty())
+      // if (savedEmail.value!!.isEmpty())
             navController.navigate(NavigationScreen.LoginScreen.route)
-        else {
-            navController.navigate(NavigationScreen.DashBoard.route)
-        }
+        //else {
+         //   navController.navigate(NavigationScreen.DashBoard.route)
+       // }
     }
 
     // Image

@@ -23,15 +23,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
 import com.example.task.navigation.NavigationScreen
+import com.example.task.presentation.login.AddViewModel
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor
 
 @Composable
-fun DashBoard(navController: NavHostController) {
+fun DashBoard(navController: NavHostController,
+              viewModel: AddViewModel = hiltViewModel()
+) {
 
     Column(
         modifier = Modifier

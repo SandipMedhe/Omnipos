@@ -5,4 +5,5 @@ sealed class AddEvent {
     data class EnterName(val value: String) : AddEvent()
     data class EnteredPassword(val value: String) : AddEvent()
     object InsertUser : AddEvent()
+
 }

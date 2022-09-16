@@ -16,31 +16,35 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
 import com.example.task.component.Button
 import com.example.task.component.InputText
 import com.example.task.navigation.NavigationScreen
+import com.example.task.presentation.login.AddViewModel
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun BusinessDetailsScreen(navController: NavHostController) {
+fun BusinessDetailsScreen(navController: NavHostController
+,viewModel: DetailsViewModel = hiltViewModel()
+) {
 
     val context = LocalContext.current
 
-    var name by remember { mutableStateOf("") }
+    var name = viewModel.businessName.value
     var nameHasError by remember { mutableStateOf(false) }
     var nameLabel by remember { mutableStateOf("Enter your name") }
 
-    var type by remember { mutableStateOf("") }
+    var type = viewModel.businessType.value
     var typeHasError by remember { mutableStateOf(false) }
     var typeLabel by remember { mutableStateOf("Enter tipo") }
 
 
-    var owner by remember { mutableStateOf("") }
+    var owner = viewModel.businessOwner.value
     var ownerHasError by remember { mutableStateOf(false) }
     var ownerLabel by remember { mutableStateOf("Enter tipo") }
 
@@ -79,8 +83,8 @@ fun BusinessDetailsScreen(navController: NavHostController) {
             fontSize = 15.sp, fontWeight = FontWeight.Bold
         )
         InputText(
-            text = name, label = nameLabel, onTextChange = {
-                name = it
+            text = name.text, label = nameLabel, onTextChange = {
+                viewModel.onEvent(BusinessDetailsEvent.EnterName(it))
             }, isError = nameHasError, modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp)
@@ -95,8 +99,8 @@ fun BusinessDetailsScreen(navController: NavHostController) {
             fontSize = 15.sp, fontWeight = FontWeight.Bold
         )
         InputText(
-            text = type, label = typeLabel, onTextChange = {
-                type = it
+            text = type.text, label = typeLabel, onTextChange = {
+                viewModel.onEvent(BusinessDetailsEvent.EnteredType(it))
             }, isError = typeHasError, modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp)
@@ -112,8 +116,8 @@ fun BusinessDetailsScreen(navController: NavHostController) {
         )
 
         InputText(
-            text = owner, label = ownerLabel, onTextChange = {
-                owner = it
+            text = owner.text, label = ownerLabel, onTextChange = {
+                viewModel.onEvent(BusinessDetailsEvent.EnteredOwner(it))
             }, isError = ownerHasError, modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp)
@@ -127,7 +131,7 @@ fun BusinessDetailsScreen(navController: NavHostController) {
 
         ) {
             Button(
-                text = "Previous", onClick = { },
+                text = "Previous", onClick = {navController.popBackStack() },
                 modifier = Modifier
                     .weight(0.2f)
                     .padding(10.dp)
@@ -136,21 +140,22 @@ fun BusinessDetailsScreen(navController: NavHostController) {
             )
             Spacer(modifier = Modifier.height(30.dp))
             Button(
-                text = "Continuar", onClick = {
+                text = "Continua", onClick = {
                     when {
-                        name.isEmpty() -> {
+                        name.text.isEmpty() -> {
                             nameHasError = true
                             nameLabel = "Name cannot be empty"
                         }
-                        type.isEmpty() -> {
+                        type.text.isEmpty() -> {
                             typeHasError = true
                             typeLabel = "tipo cannot be empty"
                         }
-                        owner.isEmpty() -> {
+                        owner.text.isEmpty() -> {
                             ownerHasError = true
                             ownerLabel = "Name cannot be empty"
                         }
                         else -> {
+                            viewModel.onEvent(BusinessDetailsEvent.InsertUser)
                             Toast.makeText(context, "Moving to the next Page", Toast.LENGTH_SHORT)
                                 .show()
                             navController.navigate(NavigationScreen.BusinessAddressScreen.route)

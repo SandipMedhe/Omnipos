@@ -1,7 +1,7 @@
 package com.example.task.presentation.login
 
 
-import android.util.Log
+
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,6 @@ import com.example.task.domain.model.User
 import com.example.task.domain.use_cases.GetUsers
 import com.example.task.domain.use_cases.InsertUser
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,15 +26,12 @@ class AddViewModel @Inject constructor(
     private val _passWord = mutableStateOf(TextFieldState())
     val passWord: State<TextFieldState> = _passWord
 
-   /* private val _eventFlow = MutableSharedFlow<UiEvent>()
-    val eventFlow = _eventFlow.asSharedFlow()*/
-
     private var currentUserId: Int? = null
 
 
-    fun onEvent(event: AddEvent) {
+     fun onEvent(event: AddEvent) {
         when (event) {
-            is AddEvent.EnterName -> {
+          is AddEvent.EnterName -> {
                 _userName.value = userName.value.copy(
                     text = event.value
                 )
@@ -56,19 +52,25 @@ class AddViewModel @Inject constructor(
                             password = passWord.value.text,
                         )
                     )
-                   // _eventFlow.emit(UiEvent.SaveUser)
                 }
+                getS()
             }
         }
     }
 
-    init {
+    private fun getS() {
+
         viewModelScope.launch {
-            getUser().onEach { user ->
-                Log.d("UserData", "$user")
+            kotlin.runCatching {
+                  getUser().collect() {
+                      println(it)
+
+                  }
             }
         }
     }
+
+
 
 
 }

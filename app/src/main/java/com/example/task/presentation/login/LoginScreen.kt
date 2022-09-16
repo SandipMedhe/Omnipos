@@ -143,7 +143,7 @@ fun LoginScreen(
                     else -> {
                         scope.launch {
                             dataStore.saveUser(name.text)
-                           viewModel.onEvent( AddEvent.InsertUser)
+                            viewModel.onEvent(AddEvent.InsertUser)
                         }
                         Toast.makeText(context, "Successfully Logged In", Toast.LENGTH_SHORT).show()
                         navController.navigate(NavigationScreen.BusinessDetailsScreen.route)
@@ -160,6 +160,7 @@ fun LoginScreen(
     }
 
 }
+
 
 @Preview(showBackground = true)
 @Composable

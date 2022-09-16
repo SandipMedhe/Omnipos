@@ -4,7 +4,7 @@ import com.example.task.domain.model.BusinessAddress
 import com.example.task.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
-interface BusinessAddress {
+interface BusinessAddressRepository {
 
     suspend fun insertBsAddress(bsAddress: BusinessAddress)
 
