@@ -10,5 +10,6 @@ sealed class NavigationScreen(var route:String){
     object DailyLogs:NavigationScreen("daily_logs")
     object DailyLogsDetails: NavigationScreen("dailyLogDetailsScreen")
     object DailyScreen: NavigationScreen("dailyScreen")
+  //  object BiometricPopUpScreen : NavigationScreen("biometricPopUpScreen")
 
 }

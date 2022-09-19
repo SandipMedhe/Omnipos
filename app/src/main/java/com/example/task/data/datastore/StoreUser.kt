@@ -30,4 +30,5 @@ class StoreUser(private val context: Context) {
             preferences[USER_KEY] = name
         }
     }
+
 }

@@ -1,9 +1,13 @@
 package com.example.task.navigation
 
+
+
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+
 import com.example.task.presentation.businessAddress.BusinessAddressScreen
 import com.example.task.presentation.business_details.BusinessDetailsScreen
 import com.example.task.presentation.login.LoginScreen
@@ -11,7 +15,7 @@ import com.example.task.sc.SplashScreen
 import com.example.task.presentation.screen.*
 
 @Composable
-fun Navigation() {
+fun Navigation(/*context : Context*/) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = NavigationScreen.SplashScreen.route) {
         composable(NavigationScreen.SplashScreen.route) {
@@ -45,6 +49,11 @@ fun Navigation() {
         composable(NavigationScreen.DailyScreen.route) {
             Daily(navController = navController)
         }
+
+        /*composable(NavigationScreen.BiometricPopUpScreen.route) {
+           // println("ContextInNAvigationComposible $context")
+            BiometricPopUpScreen(navController = navController)
+        }*/
 
 
     }

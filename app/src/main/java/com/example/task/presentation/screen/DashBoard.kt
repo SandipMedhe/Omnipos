@@ -5,11 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,6 +15,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -27,6 +26,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
+import com.example.task.data.datastore.StoreUser
 import com.example.task.navigation.NavigationScreen
 import com.example.task.presentation.login.AddViewModel
 import com.example.task.ui.theme.TaskTheme
@@ -36,6 +36,9 @@ import com.example.task.util.AppColor
 fun DashBoard(navController: NavHostController,
               viewModel: AddViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
+    val dataStore = StoreUser(context)
+
 
     Column(
         modifier = Modifier
@@ -48,7 +51,7 @@ fun DashBoard(navController: NavHostController,
         TopAppBar(
             backgroundColor = AppColor.buttonColor,
         ) {
-            Row(horizontalArrangement = Arrangement.Start) {
+            Row(horizontalArrangement = Arrangement.SpaceAround) {
                 Icon(imageVector = Icons.Default.Menu,
                     contentDescription = "Arrow Back",
                     tint = Color.White,
@@ -62,6 +65,10 @@ fun DashBoard(navController: NavHostController,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
                 )
+
+              /*  IconButton( onClick = {}) {
+                    Icon(imageVector = Icons.Default.ExitToApp, contentDescription = "")
+                }*/
             }
 
         }
