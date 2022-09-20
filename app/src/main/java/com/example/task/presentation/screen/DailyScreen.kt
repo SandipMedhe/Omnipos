@@ -1,6 +1,7 @@
 package com.example.task.presentation.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,7 +34,7 @@ fun Daily(navController: NavHostController) {
 
 @Composable
 fun DailyCard(navController: NavHostController) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
 
         TopAppBar(
             backgroundColor = AppColor.buttonColor,
@@ -59,11 +60,12 @@ fun DailyCard(navController: NavHostController) {
         Spacer(modifier = Modifier.height(10.dp))
         Card(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth().background(color = Color.White)
                 .height(100.dp)
                 .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 16.dp),
             elevation = 10.dp,
-            shape = RoundedCornerShape(16.dp)
+            shape = RoundedCornerShape(16.dp),
+            backgroundColor = Color.White
         ) {
             Row(horizontalArrangement = Arrangement.Start) {
                 Spacer(modifier = Modifier.height(30.dp))
@@ -86,7 +88,8 @@ fun DailyCard(navController: NavHostController) {
                     Text(
                         text = "1  gallon de leche", modifier = Modifier
                             .padding(5.dp)
-                            .align(Alignment.CenterHorizontally), fontSize = 20.sp
+                            .align(Alignment.CenterHorizontally), fontSize = 20.sp,
+                        color = Color.Black
                     )
 
                     Divider(
@@ -98,7 +101,8 @@ fun DailyCard(navController: NavHostController) {
                     Text(
                         text = "236.20 RD\$", modifier = Modifier
                             .padding(5.dp)
-                            .align(Alignment.CenterHorizontally), fontSize = 14.sp
+                            .align(Alignment.CenterHorizontally), fontSize = 14.sp,
+                        color = Color.Black
                     )
                 }
             }
@@ -114,11 +118,11 @@ fun DailyCard(navController: NavHostController) {
 fun Details() {
 
     Card(
-        modifier = Modifier
+        modifier = Modifier.background(Color.White)
             .fillMaxWidth()
             .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 16.dp),
-
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(16.dp),
+        backgroundColor = Color.White
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
 
@@ -126,7 +130,8 @@ fun Details() {
                 text = stringResource(id = R.string.Daily),
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp,
-                modifier = Modifier.padding(20.dp)
+                modifier = Modifier.padding(20.dp),
+                color = Color.Black
             )
 
             Row(
@@ -136,7 +141,7 @@ fun Details() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
 
-                Text(text = "Date", color = Color.Gray, fontSize = 24.sp)
+                Text(text = "Date", color = Color.Gray, fontSize = 24.sp,)
 
                 Text(
                     text = "28/07/2022-15:31",

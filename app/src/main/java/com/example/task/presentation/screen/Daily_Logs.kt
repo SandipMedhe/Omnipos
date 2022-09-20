@@ -1,12 +1,10 @@
 package com.example.task.presentation.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
@@ -26,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
-import com.example.task.component.Button
+import com.example.task.navigation.component.Button
 import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor
@@ -41,7 +39,9 @@ fun DailyLogs(navController: NavHostController) {
 
 
 
-    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = CenterHorizontally) {
+    Column(modifier = Modifier
+        .background(Color.White)
+        .fillMaxSize(), horizontalAlignment = CenterHorizontally) {
 
         TopAppBar(
             backgroundColor = AppColor.buttonColor,
@@ -91,6 +91,14 @@ fun DailyLogs(navController: NavHostController) {
             .height(250.dp)
             .fillMaxWidth()
             .padding(30.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                textColor = Color.Black,
+                backgroundColor = Color.Transparent,
+                focusedBorderColor = Color.Gray,
+                unfocusedBorderColor =Color.Gray,
+                cursorColor = Color.Gray,
+                placeholderColor = Color.LightGray
+            ),
             placeholder = {
                 Text(
                     text = stringResource(id = R.string.la_entrada),

@@ -2,15 +2,15 @@ package com.example.task.presentation.businessAddress
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -21,10 +21,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
-import com.example.task.component.Button
-import com.example.task.component.InputText
+import com.example.task.navigation.component.Button
+import com.example.task.navigation.component.InputText
 import com.example.task.navigation.NavigationScreen
-import com.example.task.presentation.business_details.DetailsViewModel
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor
 
@@ -56,6 +55,7 @@ fun BusinessAddressScreen(navController: NavHostController,
 
     Column(
         modifier = Modifier
+            .background(color = Color.White)
             .fillMaxSize()
             .padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally

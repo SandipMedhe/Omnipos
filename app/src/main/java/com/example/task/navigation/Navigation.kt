@@ -2,11 +2,12 @@ package com.example.task.navigation
 
 
 
-import android.content.Context
+
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+//import com.example.task.presentation.biometricAuth.BiometricPopUpScreen
 
 import com.example.task.presentation.businessAddress.BusinessAddressScreen
 import com.example.task.presentation.business_details.BusinessDetailsScreen
@@ -50,7 +51,7 @@ fun Navigation(/*context : Context*/) {
             Daily(navController = navController)
         }
 
-        /*composable(NavigationScreen.BiometricPopUpScreen.route) {
+     /*   composable(NavigationScreen.BiometricPopUpScreen.route) {
            // println("ContextInNAvigationComposible $context")
             BiometricPopUpScreen(navController = navController)
         }*/

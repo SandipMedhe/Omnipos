@@ -1,4 +1,4 @@
-package com.example.task.component
+package com.example.task.navigation.component
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -11,11 +11,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @ExperimentalComposeUiApi
 @Composable
@@ -35,13 +33,18 @@ fun InputText(
         value = text,
         onValueChange = onTextChange,
         isError =isError,
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color.Transparent
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            textColor = Color.Black,
+            backgroundColor = Color.Transparent,
+            focusedBorderColor = Color.Gray,
+            unfocusedBorderColor =Color.Gray,
+            cursorColor = Color.Gray,
+            placeholderColor = Color.LightGray
         ),
         maxLines = maxLine,
         shape = RoundedCornerShape(50.dp),
 
-        label = { Text(text = label) },
+        label = { Text(text = label, color = Color.Gray) },
         visualTransformation = visualTransformation,
         keyboardOptions = KeyboardOptions.Default.copy(
             imeAction = ImeAction.Done

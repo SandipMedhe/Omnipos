@@ -25,7 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.task.R
 import com.example.task.data.datastore.StoreUser
 import com.example.task.navigation.NavigationScreen
-import com.example.task.presentation.biometricAuth.BiometricPopUp
+/*import com.example.task.presentation.biometricAuth.BiometricPopUp*/
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor
 import kotlinx.coroutines.delay
@@ -53,14 +53,14 @@ fun SplashScreen(navController: NavHostController) {
         )
         // Customize the delay time
         delay(1000L)
-       if (savedEmail.value!!.isEmpty())
+       //if (savedEmail.value!!.isEmpty())
             navController.navigate(NavigationScreen.LoginScreen.route)
-        else {
-           //  navController.navigate(NavigationScreen.DashBoard.route)
-          // navController.navigate(NavigationScreen.BiometricPopUpScreen.route)
-           context.startActivity(Intent(context, BiometricPopUp::class.java))
+        //else {
+         //   navController.navigate(NavigationScreen.DashBoard.route)
+         //  navController.navigate(NavigationScreen.BiometricPopUpScreen.route)
+          // context.startActivity(Intent(context, BiometricPopUp::class.java))
 
-        }
+      //  }
     }
 
     // Image

@@ -1,3 +1,4 @@
+/*
 package com.example.task.presentation.biometricAuth
 
 import android.os.Bundle
@@ -57,4 +58,4 @@ class BiometricPopUp : FragmentActivity() {
             )
         }
     }
-}
+}*/

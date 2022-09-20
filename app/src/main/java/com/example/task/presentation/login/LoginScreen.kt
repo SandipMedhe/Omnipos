@@ -25,12 +25,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
-import com.example.task.component.Button
-import com.example.task.component.InputText
+import com.example.task.navigation.component.Button
+import com.example.task.navigation.component.InputText
 import com.example.task.data.datastore.StoreUser
 import com.example.task.navigation.NavigationScreen
-import com.example.task.presentation.login.AddEvent
-import com.example.task.presentation.login.AddViewModel
 import com.example.task.ui.theme.TaskTheme
 import kotlinx.coroutines.launch
 
@@ -56,6 +54,7 @@ fun LoginScreen(
 
     Column(
         modifier = Modifier
+            .background(Color.White)
             .fillMaxSize()
             .background(color = Color.White)
             .padding(start = 10.dp, end = 10.dp, top = 20.dp),

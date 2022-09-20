@@ -1,13 +1,16 @@
+/*
 
 package com.example.task.presentation.biometricAuth
 
 import android.content.Context
 import android.content.ContextWrapper
 import android.os.Build
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat
 import androidx.fragment.app.FragmentActivity
 
 
@@ -72,13 +75,15 @@ object Biometric {
     }
 
     fun authenticate(
-        activity: FragmentActivity,
+        activity: AppCompatActivity,
         title: String,
         subtitle: String,
         description: String,
         negativeText: String,
         onError: (Int,CharSequence)->Unit,
-        onSuccess: (BiometricPrompt.AuthenticationResult)->Unit,
+        onSuccess: (*/
+/*BiometricPrompt.AuthenticationResult*//*
+)->Unit,
         onFailed: ()->Unit,
     ){
         val executor = ContextCompat.getMainExecutor(activity)
@@ -96,7 +101,11 @@ object Biometric {
                     result: BiometricPrompt.AuthenticationResult
                 ) {
                     super.onAuthenticationSucceeded(result)
-                    onSuccess(result)
+                    Log.e("success", "onAuthenticationSucceeded: $onSuccess(result)", )
+                    onSuccess(*/
+/*result*//*
+)
+
                 }
 
                 override fun onAuthenticationFailed() {
@@ -115,9 +124,12 @@ object Biometric {
     }
 }
 
-fun Context.getActivity(): FragmentActivity? = when (this) {
-    is FragmentActivity -> this
+fun Context.getActivity(): AppCompatActivity? = when (this) {
+    is AppCompatActivity -> this
     is ContextWrapper -> baseContext.getActivity()
     else -> null
 }
 
+
+
+*/

@@ -1,6 +1,7 @@
 package com.example.task.presentation.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,7 +27,7 @@ import com.example.task.util.AppColor
 
 @Composable
 fun DailyLogsDetails(navController: NavHostController) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
 
         TopAppBar(
             backgroundColor = AppColor.buttonColor,
@@ -67,7 +68,7 @@ fun LogDetailsCard(navController: NavHostController, image: Int = R.drawable.act
             .padding(start = 16.dp, top = 16.dp, end = 16.dp)
             .clickable { navController.navigate(NavigationScreen.DailyScreen.route) },
         elevation = 10.dp,
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(16.dp), backgroundColor = Color.White
     ) {
         Row(horizontalArrangement = Arrangement.SpaceAround) {
             Image(
@@ -87,7 +88,8 @@ fun LogDetailsCard(navController: NavHostController, image: Int = R.drawable.act
                 Text(
                     text = "1  gallon de leche", modifier = Modifier
                         .padding(5.dp)
-                        .align(Alignment.CenterHorizontally), fontSize = 20.sp
+                        .align(Alignment.CenterHorizontally), fontSize = 20.sp,
+                    color = Color.Black
                 )
 
                 Divider(
@@ -99,7 +101,8 @@ fun LogDetailsCard(navController: NavHostController, image: Int = R.drawable.act
                 Text(
                     text = "236.20 RD\$", modifier = Modifier
                         .padding(5.dp)
-                        .align(Alignment.CenterHorizontally), fontSize = 14.sp
+                        .align(Alignment.CenterHorizontally), fontSize = 14.sp,
+                    color = Color.Black
                 )
             }
 

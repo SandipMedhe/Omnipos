@@ -83,7 +83,7 @@ fun DashBoard(navController: NavHostController,
             shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
         ) {
             Column(
-                modifier = Modifier.padding(10.dp),
+                modifier = Modifier.background(color = Color.White).padding(10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
 
