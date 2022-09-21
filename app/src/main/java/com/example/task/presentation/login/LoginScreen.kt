@@ -1,5 +1,6 @@
 package com.example.task.presentation.login
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,8 +26,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
-import com.example.task.navigation.component.Button
-import com.example.task.navigation.component.InputText
+import com.example.task.presentation.component.Button
+import com.example.task.presentation.component.InputText
 import com.example.task.data.datastore.StoreUser
 import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
@@ -43,14 +44,22 @@ fun LoginScreen(
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val dataStore = StoreUser(context)
+    val enterName = stringResource(R.string.Enter_your_name)
+    val enterPass = stringResource(R.string.enterPass)
+    val emptyTxtErr = stringResource(id = R.string.emptyTxtErr)
+    val invalidTxt = stringResource(R.string.invalid)
+    val successMsg = stringResource(id = R.string.successMsg)
 
     var name = viewModel.userName.value
     var nameHasError by remember { mutableStateOf(false) }
-    var nameLabel by remember { mutableStateOf("Enter your name") }
+    var nameLabel by remember { mutableStateOf(enterName) }
 
     var password = viewModel.passWord.value
     var passwordHasError by remember { mutableStateOf(false) }
-    var passwordLabel by remember { mutableStateOf("Enter your password") }
+    var passwordLabel by remember { mutableStateOf(enterPass) }
+
+    Log.e("TAG", "LoginScreen: ", )
+
 
     Column(
         modifier = Modifier
@@ -64,7 +73,7 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(40.dp))
         Image(
             painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Andy Rubin",
+            contentDescription = "Abc",
             modifier = Modifier
                 .width(130.dp)
                 .height(130.dp)
@@ -128,23 +137,23 @@ fun LoginScreen(
 
 
         Button(
-            text = "Continuar",
+            text = stringResource(id = R.string.txt_continue),
             onClick = {
                 when {
                     name.text.isEmpty() -> {
                         nameHasError = true
-                        nameLabel = "Name cannot be empty"
+                        nameLabel = emptyTxtErr
                     }
                     password.text.isEmpty() -> {
                         passwordHasError = true
-                        passwordLabel = "Invalid password"
+                        passwordLabel = invalidTxt
                     }
                     else -> {
                         scope.launch {
                             dataStore.saveUser(name.text)
                             viewModel.onEvent(AddEvent.InsertUser)
                         }
-                        Toast.makeText(context, "Successfully Logged In", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, successMsg, Toast.LENGTH_SHORT).show()
                         navController.navigate(NavigationScreen.BusinessDetailsScreen.route)
                     }
                 }

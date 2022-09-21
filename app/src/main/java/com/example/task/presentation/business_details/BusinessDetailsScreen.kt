@@ -21,8 +21,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
-import com.example.task.navigation.component.Button
-import com.example.task.navigation.component.InputText
+import com.example.task.presentation.component.Button
+import com.example.task.presentation.component.InputText
 import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor
@@ -34,19 +34,27 @@ fun BusinessDetailsScreen(navController: NavHostController
 ) {
 
     val context = LocalContext.current
+    val businessName = stringResource(id = R.string.businessName)
+    val strType = stringResource(id = R.string.typeLabel)
+    val strOwnerLabel = stringResource(id = R.string.ownerLabel)
+    val nextPageToast = stringResource(id = R.string.nextPageToast)
+    val businessNameLabel = stringResource(id = R.string.bussinessNameLabel)
+    val typeLabelNull = stringResource(id = R.string.typeLabelNull)
+    val OwnerLabelNull = stringResource(id = R.string.OwnerLabelNull)
+
 
     var name = viewModel.businessName.value
     var nameHasError by remember { mutableStateOf(false) }
-    var nameLabel by remember { mutableStateOf("Enter your name") }
+    var nameLabel by remember { mutableStateOf(businessName) }
 
     var type = viewModel.businessType.value
     var typeHasError by remember { mutableStateOf(false) }
-    var typeLabel by remember { mutableStateOf("Enter tipo") }
+    var typeLabel by remember { mutableStateOf(strType) }
 
 
     var owner = viewModel.businessOwner.value
     var ownerHasError by remember { mutableStateOf(false) }
-    var ownerLabel by remember { mutableStateOf("Enter tipo") }
+    var ownerLabel by remember { mutableStateOf(strOwnerLabel) }
 
 
 
@@ -60,7 +68,7 @@ fun BusinessDetailsScreen(navController: NavHostController
         Spacer(modifier = Modifier.height(30.dp))
         Image(
             painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Andy Rubin",
+            contentDescription = "Abc",
             modifier = Modifier
                 .width(130.dp)
                 .height(130.dp)
@@ -76,7 +84,7 @@ fun BusinessDetailsScreen(navController: NavHostController
 
         Spacer(modifier = Modifier.height(40.dp))
         Text(
-            text = stringResource(id = R.string.Name),
+            text = stringResource(id = R.string.bussiness_Name),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
@@ -92,7 +100,7 @@ fun BusinessDetailsScreen(navController: NavHostController
         )
 
         Text(
-            text = stringResource(id = R.string.tipo),
+            text = stringResource(id = R.string.type),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
@@ -108,7 +116,7 @@ fun BusinessDetailsScreen(navController: NavHostController
         )
 
         Text(
-            text = stringResource(id = R.string.Dueña),
+            text = stringResource(id = R.string.Owner),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp),
@@ -132,7 +140,7 @@ fun BusinessDetailsScreen(navController: NavHostController
 
         ) {
             Button(
-                text = "Previous", onClick = {navController.popBackStack() },
+                text = stringResource(id = R.string.previous), onClick = {navController.popBackStack() },
                 modifier = Modifier
                     .weight(0.2f)
                     .padding(10.dp)
@@ -141,23 +149,23 @@ fun BusinessDetailsScreen(navController: NavHostController
             )
             Spacer(modifier = Modifier.height(30.dp))
             Button(
-                text = "Continua", onClick = {
+                text = stringResource(id = R.string.txt_continue), onClick = {
                     when {
                         name.text.isEmpty() -> {
                             nameHasError = true
-                            nameLabel = "Name cannot be empty"
+                            nameLabel = businessNameLabel
                         }
                         type.text.isEmpty() -> {
                             typeHasError = true
-                            typeLabel = "tipo cannot be empty"
+                            typeLabel = typeLabelNull
                         }
                         owner.text.isEmpty() -> {
                             ownerHasError = true
-                            ownerLabel = "Name cannot be empty"
+                            ownerLabel = OwnerLabelNull
                         }
                         else -> {
                             viewModel.onEvent(BusinessDetailsEvent.InsertUser)
-                            Toast.makeText(context, "Moving to the next Page", Toast.LENGTH_SHORT)
+                            Toast.makeText(context, nextPageToast, Toast.LENGTH_SHORT)
                                 .show()
                             navController.navigate(NavigationScreen.BusinessAddressScreen.route)
                         }

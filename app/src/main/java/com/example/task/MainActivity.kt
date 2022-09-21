@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                         Log.d("--", "Dark ----------- ")
                         systemUiController.setSystemBarsColor(
                             darkIcons = useDarkIcons,
-                            color = Color.Transparent
+                            color = Color.Black
                         )
                     } else{
                         Log.d("--", "Light ----------- ")

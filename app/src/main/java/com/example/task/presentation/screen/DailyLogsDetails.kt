@@ -27,7 +27,9 @@ import com.example.task.util.AppColor
 
 @Composable
 fun DailyLogsDetails(navController: NavHostController) {
-    Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .background(color = Color.White)) {
 
         TopAppBar(
             backgroundColor = AppColor.buttonColor,
@@ -73,7 +75,7 @@ fun LogDetailsCard(navController: NavHostController, image: Int = R.drawable.act
         Row(horizontalArrangement = Arrangement.SpaceAround) {
             Image(
                 painter = painterResource(id = R.drawable.calender),
-                contentDescription = "Andy Rubin",
+                contentDescription = "Abc",
                 modifier = Modifier
                     .padding(top = 20.dp)
                     .align(Alignment.Top)
@@ -86,7 +88,7 @@ fun LogDetailsCard(navController: NavHostController, image: Int = R.drawable.act
                     .align(Alignment.CenterVertically)
             ) {
                 Text(
-                    text = "1  gallon de leche", modifier = Modifier
+                    text = stringResource(id = R.string._1_gallon_milk), modifier = Modifier
                         .padding(5.dp)
                         .align(Alignment.CenterHorizontally), fontSize = 20.sp,
                     color = Color.Black
@@ -108,7 +110,7 @@ fun LogDetailsCard(navController: NavHostController, image: Int = R.drawable.act
 
             Image(
                 painter = painterResource(id = image),
-                contentDescription = "Andy Rubin",
+                contentDescription = "Abc",
                 modifier = Modifier
                     .width(50.dp)
                     .height(50.dp)

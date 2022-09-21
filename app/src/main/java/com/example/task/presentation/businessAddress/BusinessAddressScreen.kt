@@ -21,8 +21,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
-import com.example.task.navigation.component.Button
-import com.example.task.navigation.component.InputText
+import com.example.task.presentation.component.Button
+import com.example.task.presentation.component.InputText
 import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor
@@ -33,22 +33,31 @@ fun BusinessAddressScreen(navController: NavHostController,
                           viewModel: AddressViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val cityStr = stringResource(id = R.string.city)
+    val pinStr = stringResource(id = R.string.city_pin)
+    val add1 = stringResource(id = R.string.add_1)
+    val add2 = stringResource(id = R.string.add_2)
+    val cityNullTxt = stringResource(id = R.string.cityNullTxt)
+    val cityPinNull = stringResource(id = R.string.cityPinNull)
+    val add1Null = stringResource(id = R.string.add_1_null)
+    val add2Null = stringResource(id = R.string.add_2_null)
+    val nextPageToast = stringResource(id = R.string.nextPageToast)
 
-    var cuida = viewModel.addressCity.value
-    var cuidaHasError by remember { mutableStateOf(false) }
-    var cuidadLabel by remember { mutableStateOf("cuidad") }
+    var city = viewModel.addressCity.value
+    var cityHasError by remember { mutableStateOf(false) }
+    var cityLabel by remember { mutableStateOf(cityStr) }
 
-    var codigo = viewModel.addressPin.value
-    var codigoHasError by remember { mutableStateOf(false) }
-    var codigoLabel by remember { mutableStateOf("codigo Pin") }
+    var cityPin = viewModel.addressPin.value
+    var cityPinHasError by remember { mutableStateOf(false) }
+    var cityPinLabel by remember { mutableStateOf(pinStr) }
 
-    var DiectionLineOne = viewModel.addressDirectionOne.value
-    var Direccion_Linea_1HasError by remember { mutableStateOf(false) }
-    var DirectionLine_1_LABEL by remember { mutableStateOf("Direccion Linea 1") }
+    var direction1 = viewModel.addressDirectionOne.value
+    var direction1HasError by remember { mutableStateOf(false) }
+    var direction1Label by remember { mutableStateOf(add1) }
 
-    var Direccion_Linea_2 = viewModel. addressDirectionTwo.value
-    var Direccion_Linea_2HasError by remember { mutableStateOf(false) }
-    var Direccion_Linea_2Label by remember { mutableStateOf("Direccion Linea 2") }
+    var direction2 = viewModel. addressDirectionTwo.value
+    var direction2HasError by remember { mutableStateOf(false) }
+    var direction2Label by remember { mutableStateOf(add2) }
 
 
 
@@ -64,7 +73,7 @@ fun BusinessAddressScreen(navController: NavHostController,
         Spacer(modifier = Modifier.height(10.dp))
         Image(
             painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Andy Rubin",
+            contentDescription = "Abc",
             modifier = Modifier
                 .width(130.dp)
                 .height(130.dp)
@@ -72,7 +81,7 @@ fun BusinessAddressScreen(navController: NavHostController,
                 .padding(bottom = 30.dp)
         )
         Text(
-            text = stringResource(id = R.string.Dirección),
+            text = stringResource(id = R.string.busseness_details),
             fontSize = 30.sp, fontWeight = FontWeight.Bold, color = AppColor.textColor,
             modifier = Modifier.padding(top = 10.dp)
         )
@@ -80,33 +89,33 @@ fun BusinessAddressScreen(navController: NavHostController,
         Spacer(modifier = Modifier.height(30.dp))
 
         InputText(
-            text = cuida.text,
-            label = cuidadLabel,
+            text = city.text,
+            label = cityLabel,
             onTextChange = {
                 viewModel.onEvent(BusinessAddressEvent.EnterCity(it))
-            }, isError = cuidaHasError,
+            }, isError = cityHasError,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
         )
 
         InputText(
-            text = codigo.text,
-            label = codigoLabel,
+            text = cityPin.text,
+            label = cityPinLabel,
             onTextChange = {
                 viewModel.onEvent(BusinessAddressEvent.EnterPin(it))
-            }, isError = codigoHasError,
+            }, isError = cityPinHasError,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
         )
 
         InputText(
-            text = DiectionLineOne.text,
-            label = DirectionLine_1_LABEL,
+            text = direction1.text,
+            label = direction1Label,
             onTextChange = {
                 viewModel.onEvent(BusinessAddressEvent.EnteredAddressOne(it))
-            }, isError = Direccion_Linea_1HasError,
+            }, isError = direction1HasError,
             modifier = Modifier
 
                 .fillMaxWidth()
@@ -114,37 +123,37 @@ fun BusinessAddressScreen(navController: NavHostController,
         )
 
         InputText(
-            text = Direccion_Linea_2.text,
-            label = Direccion_Linea_2Label,
-            onTextChange = {  viewModel.onEvent(BusinessAddressEvent.EnteredAddressTwo(it)) }, isError = Direccion_Linea_2HasError,
+            text = direction2.text,
+            label = direction2Label,
+            onTextChange = {  viewModel.onEvent(BusinessAddressEvent.EnteredAddressTwo(it)) }, isError = direction2HasError,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
         )
 
         Button(
-            text = "Continuar", onClick = {
+            text = stringResource(id = R.string.txt_continue), onClick = {
                 when {
-                    cuida.text.isEmpty() -> {
-                        cuidaHasError = true
-                        cuidadLabel = "cuida cannot be empty"
+                    city.text.isEmpty() -> {
+                        cityHasError = true
+                        cityLabel = cityNullTxt
                     }
-                    codigo.text.isEmpty() -> {
-                        codigoHasError = true
-                        codigoLabel = "codigo Pin cannot be empty"
+                    cityPin.text.isEmpty() -> {
+                        cityPinHasError = true
+                        cityPinLabel = cityPinNull
                     }
-                    DiectionLineOne.text.isEmpty() -> {
-                        Direccion_Linea_1HasError = true
-                        DirectionLine_1_LABEL = "Field 1 cannot be empty"
+                    direction1.text.isEmpty() -> {
+                        direction1HasError = true
+                        direction1Label = add1Null
                     }
-                    Direccion_Linea_2.text.isEmpty() -> {
-                        Direccion_Linea_2HasError = true
-                        Direccion_Linea_2Label = "Field cannot be empty"
+                    direction2.text.isEmpty() -> {
+                        direction2HasError = true
+                        direction1Label = add2Null
                     }
                     else -> {
                         viewModel.onEvent(BusinessAddressEvent.InsertAddress)
                         viewModel.onEvent(BusinessAddressEvent.GetAllDAta)
-                        Toast.makeText(context, "Moving to the next Page", Toast.LENGTH_SHORT)
+                        Toast.makeText(context, nextPageToast, Toast.LENGTH_SHORT)
                             .show()
                         navController.navigate(NavigationScreen.DashBoard.route)
                     }

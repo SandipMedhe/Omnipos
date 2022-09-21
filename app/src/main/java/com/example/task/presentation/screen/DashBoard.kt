@@ -40,6 +40,7 @@ fun DashBoard(navController: NavHostController,
     val dataStore = StoreUser(context)
 
 
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -61,7 +62,7 @@ fun DashBoard(navController: NavHostController,
                 Spacer(modifier = Modifier.width(100.dp))
 
                 Text(
-                    text = stringResource(id = R.string.Tablero_de_mandos),
+                    text = stringResource(id = R.string.Dashboard),
                     fontWeight = FontWeight.Bold,
                     color = Color.White
                 )
@@ -90,7 +91,7 @@ fun DashBoard(navController: NavHostController,
 
                 Image(
                     painter = painterResource(id = R.drawable.stocks_growth),
-                    contentDescription = "Andy Rubin",
+                    contentDescription = "Abc",
                     modifier = Modifier
                         .width(70.dp)
                         .height(70.dp)
@@ -98,21 +99,21 @@ fun DashBoard(navController: NavHostController,
 
                 DashBoardCard(
                     image = R.drawable.booklet,
-                    text = stringResource(id = R.string.Registros_diarios),
+                    text = stringResource(id = R.string.daily_logs),
                     onClick = {
                         navController.navigate(NavigationScreen.DailyLogs.route)
                     })
 
                 DashBoardCard(
                     image = R.drawable.cart,
-                    text = stringResource(id = R.string.Colecciones),
+                    text = stringResource(id = R.string.Collections),
                     onClick = {
 
                     })
 
                 DashBoardCard(
                     image = R.drawable.chart,
-                    text = stringResource(id = R.string.Registros_diarios),
+                    text = stringResource(id = R.string.daily_logs),
                     onClick = {
 
 
@@ -144,7 +145,7 @@ fun DashBoardCard(
         Row {
             Image(
                 painter = painterResource(id = image),
-                contentDescription = "Andy Rubin",
+                contentDescription = "Abc",
                 modifier = Modifier
                     .width(60.dp)
                     .height(70.dp)

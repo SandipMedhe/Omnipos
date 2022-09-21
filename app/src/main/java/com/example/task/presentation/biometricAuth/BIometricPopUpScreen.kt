@@ -60,12 +60,13 @@ fun BiometricPopUpScreen( navController: NavHostController){
 }
 */
 
-/*Composable
-fun BiometricPopUpScreen( navController: NavHostController){
+@Composable
+fun BiometricPopUpScreen(navController: NavHostController) {
+
+
     val context = LocalContext.current
     val activity = context.getActivity()
     println("Activity--$activity")
-
     if (activity != null) {
         val isEnabled = isAvailable(context)
         if (isEnabled) {
@@ -77,18 +78,17 @@ fun BiometricPopUpScreen( navController: NavHostController){
                 description = "Authentication is must",
                 negativeText = "Cancel",
                 onSuccess = {
-                    Log.e("Success", "BiometricPopUpScreen: ",)
+                    Log.e("Success", "BiometricPopUpScreen: ")
+
                     Toast.makeText(
                         context,
                         "Authenticated successfully",
                         Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    ).show()
 
                     navController.navigate(NavigationScreen.DashBoard.route)
+                            },
 
-
-                },
                 onError = { errorCode, errorString ->
 
                     Toast.makeText(
@@ -97,8 +97,8 @@ fun BiometricPopUpScreen( navController: NavHostController){
                         Toast.LENGTH_SHORT
                     )
                         .show()
+                          },
 
-                },
                 onFailed = {
 
                     Toast.makeText(
@@ -107,14 +107,13 @@ fun BiometricPopUpScreen( navController: NavHostController){
                         Toast.LENGTH_SHORT
                     )
                         .show()
-
                 }
             )
         }
     }
 }
+
 fun isAvailable(context: Context): Boolean {
     val fingerprintManager = FingerprintManagerCompat.from(context)
     return fingerprintManager.isHardwareDetected && fingerprintManager.hasEnrolledFingerprints()
 }
-*/

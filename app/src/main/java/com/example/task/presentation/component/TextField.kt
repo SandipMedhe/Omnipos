@@ -1,4 +1,4 @@
-package com.example.task.navigation.component
+package com.example.task.presentation.component
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions

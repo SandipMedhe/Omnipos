@@ -34,7 +34,9 @@ fun Daily(navController: NavHostController) {
 
 @Composable
 fun DailyCard(navController: NavHostController) {
-    Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .background(color = Color.White)) {
 
         TopAppBar(
             backgroundColor = AppColor.buttonColor,
@@ -60,7 +62,8 @@ fun DailyCard(navController: NavHostController) {
         Spacer(modifier = Modifier.height(10.dp))
         Card(
             modifier = Modifier
-                .fillMaxWidth().background(color = Color.White)
+                .fillMaxWidth()
+                .background(color = Color.White)
                 .height(100.dp)
                 .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 16.dp),
             elevation = 10.dp,
@@ -71,7 +74,7 @@ fun DailyCard(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(30.dp))
                 Image(
                     painter = painterResource(id = R.drawable.active),
-                    contentDescription = "Andy Rubin",
+                    contentDescription = "Abc",
                     modifier = Modifier
                         .width(50.dp)
                         .height(50.dp)
@@ -86,7 +89,7 @@ fun DailyCard(navController: NavHostController) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Text(
-                        text = "1  gallon de leche", modifier = Modifier
+                        text = stringResource(id = R.string._1_gallon_milk), modifier = Modifier
                             .padding(5.dp)
                             .align(Alignment.CenterHorizontally), fontSize = 20.sp,
                         color = Color.Black
@@ -118,7 +121,8 @@ fun DailyCard(navController: NavHostController) {
 fun Details() {
 
     Card(
-        modifier = Modifier.background(Color.White)
+        modifier = Modifier
+            .background(Color.White)
             .fillMaxWidth()
             .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 16.dp),
         shape = RoundedCornerShape(16.dp),
@@ -193,7 +197,7 @@ fun Details() {
             ) {
 
                 Text(
-                    text = stringResource(id = R.string.one_gallon_milk),
+                    text = stringResource(id = R.string._1_gallon_milk),
                     color = Color.Black,
                     fontSize = 24.sp,
                 )

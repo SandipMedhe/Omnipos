@@ -1,5 +1,3 @@
-/*
-
 package com.example.task.presentation.biometricAuth
 
 import android.content.Context
@@ -10,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat
-import androidx.fragment.app.FragmentActivity
 
 
 object Biometric {
@@ -80,12 +76,12 @@ object Biometric {
         subtitle: String,
         description: String,
         negativeText: String,
-        onError: (Int,CharSequence)->Unit,
-        onSuccess: (*/
-/*BiometricPrompt.AuthenticationResult*//*
-)->Unit,
-        onFailed: ()->Unit,
-    ){
+        onError: (Int, CharSequence) -> Unit,
+        onSuccess: (
+            BiometricPrompt.AuthenticationResult
+        ) -> Unit,
+        onFailed: () -> Unit,
+    ) {
         val executor = ContextCompat.getMainExecutor(activity)
         val biometricPrompt = BiometricPrompt(activity, executor,
             object : BiometricPrompt.AuthenticationCallback() {
@@ -94,17 +90,17 @@ object Biometric {
                     errString: CharSequence
                 ) {
                     super.onAuthenticationError(errorCode, errString)
-                    onError(errorCode,errString)
+                    onError(errorCode, errString)
                 }
 
                 override fun onAuthenticationSucceeded(
                     result: BiometricPrompt.AuthenticationResult
                 ) {
                     super.onAuthenticationSucceeded(result)
-                    Log.e("success", "onAuthenticationSucceeded: $onSuccess(result)", )
-                    onSuccess(*/
-/*result*//*
-)
+                    Log.e("success", "onAuthenticationSucceeded: $onSuccess(result)")
+                    onSuccess(
+                        result
+                    )
 
                 }
 
@@ -132,4 +128,3 @@ fun Context.getActivity(): AppCompatActivity? = when (this) {
 
 
 
-*/

@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.task.R
-import com.example.task.navigation.component.Button
+import com.example.task.presentation.component.Button
 import com.example.task.navigation.NavigationScreen
 import com.example.task.ui.theme.TaskTheme
 import com.example.task.util.AppColor
@@ -56,7 +56,7 @@ fun DailyLogs(navController: NavHostController) {
                 Spacer(modifier = Modifier.width(100.dp))
 
                 Text(
-                    text = stringResource(id = R.string.Registros_diarios),
+                    text = stringResource(id = R.string.daily_logs),
                     fontWeight = FontWeight.Bold,
                     color = Color.White
                 )
@@ -110,7 +110,7 @@ fun DailyLogs(navController: NavHostController) {
             })
 
         Button(
-            text = "Continuar",
+            text = stringResource(id = R.string.txt_continue),
             onClick = { navController.navigate(NavigationScreen.DailyLogsDetails.route) },
             modifier = Modifier
                 .padding(top = 20.dp)

@@ -31,4 +31,10 @@ class StoreUser(private val context: Context) {
         }
     }
 
+    suspend fun clear(){
+        context.dataStore.edit {
+            clear()
+        }
+    }
+
 }
